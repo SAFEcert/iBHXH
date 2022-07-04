@@ -1,0 +1,38 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "data": {
+          "name": "Name",
+          "json_config": "JSON config",
+          "api_ip_address": "API ip address",
+          "serial_number": "Serial Number",
+          "pdf_options": "JSON PDF options",
+          "pin": "Pin code",
+          "app": "App (XHDO;THUE;BHXH;HSKHAC)",
+          "output_folder": "Thư mục chuyển đến sau khi chuyển XML",
+          "output_folder_trinhky": "Chuyển đến TRINHKY sau khi chuyển XML",
+          "output_folder_chuaky": "Chuyển đến CHUAKY sau khi chuyển XML"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "[%key:common::config_flow::error::cannot_connect%]",
+      "invalid_config": "Config invalid json or missing parameter",
+      "invalid_name": "Name must be at least 3 characters",
+      "invalid_serial_number": "Invalid min length of serial",
+      "invalid_token_serial": "Invalid min length of serial",
+      "invalid_access_token": "Invalid access token must be json object",
+      "invalid_pin": "Invalid pin length must be > 6 and < 8",
+      "invalid_app": "App must be in XHDO,BHXH,THUE,HSKHAC and and separated by ';'",
+      "invalid_ip_address": "Invalid API ip address",
+      "serial_not_available": "Token & serial does not found",
+      "invalid_tax_ids": "Invalid tax id",
+      "invalid_output_folder": "Invalid output folder, named must in CHUAKY, TRINHKY",
+      "unknown": "unknown error"
+    },
+    "abort": {
+      "already_configured": "[%key:common::config_flow::abort::already_configured_device%]"
+    }
+  }
+}

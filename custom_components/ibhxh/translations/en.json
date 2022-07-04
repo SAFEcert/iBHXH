@@ -1,0 +1,36 @@
+{
+    "config": {
+        "abort": {
+            "already_configured": "[%key:common::config_flow::abort::already_configured_device%]"
+        },
+        "error": {
+            "cannot_connect": "[%key:common::config_flow::error::cannot_connect%]",
+            "invalid_config": "Config invalid json or missing parameter",
+            "invalid_name": "Name must be at least 3 characters",
+            "invalid_serial_number": "Invalid min length of serial",
+            "invalid_token_serial": "Invalid min length of serial",
+            "invalid_access_token": "Invalid access token must be json object",
+            "invalid_pin": "Invalid pin length must be > 6 and < 8",
+            "invalid_output_folder": "Invalid output folder, named must in CHUAKY, TRINHKY",
+            "invalid_app": "App must be in XHDO,BHXH,THUE,HSKHAC and and separated by ';'",
+            "invalid_ip_address": "Invalid API ip address",
+            "serial_not_available": "Token & serial does not found",
+            "invalid_tax_ids": "Invalid tax id",
+            "unknown": "unknown error"
+        },
+        "step": {
+            "user": {
+                "data": {
+                    "name": "Name",
+                    "json_config": "JSON config",
+                    "api_ip_address": "API ip address",
+                    "pdf_options": "JSON PDF options",
+                    "serial_number": "Serial Number",
+                    "pin": "Pin code",
+                    "app": "App (XHDO;THUE;BHXH;HSKHAC)",
+                    "output_folder": "Folder destination after convert XML"
+                }
+            }
+        }
+   }
+}
