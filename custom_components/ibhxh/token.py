@@ -137,7 +137,7 @@ class Crons:
 
         # Some static information about this device
         self.firmware_version = "0.0.1"
-        self.model = "TaxOnline token cron"
+        self.model = "iBHXH token cron"
 
     @property
     def get_name(self) -> str:
@@ -197,7 +197,8 @@ class Crons:
             "taikhoanTracuu" : self.taikhoanTracuu,
             "maDoiTuong"     : self.maDoiTuong,
             "nguoiky"        : self.nguoiky,
-            "output_folder"  : self.output_folder
+            "output_folder"  : self.output_folder,
+            "serial_number"  : self.serial_number
         }
 
         requestURL = "http://" + self.token._api_ip_address + ":3000/api/convertExcelToXML"
