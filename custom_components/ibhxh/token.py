@@ -57,7 +57,7 @@ class Token:
         self._installed = False
         self._is_valid_token = False
         cron_id = f"{self._id}_"+serial_number
-        cron_name = "Converter: Excel => XML. " + self._name
+        cron_name = "Excel Converter. " + self._name
         self.crons = [
             Crons(cron_id, cron_name, self),
         ]
