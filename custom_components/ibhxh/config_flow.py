@@ -112,7 +112,7 @@ async def validate_input(hass: HomeAssistant, data: dict) -> dict[str, Any]:
         raise InvalidTaxList
 
 
-    token = Token(hass, data["name"], data["api_ip_address"], json.dumps(tax_ids), input_config["access_token"], input_config, output_folder)
+    token = Token(hass, data["name"], data["api_ip_address"], json.dumps(tax_ids), json.dumps(input_config["access_token"]), input_config, output_folder)
     # is_valid = await token.check_serial_exists()
     # if is_valid:
     #     _LOGGER.info("Token validated")
