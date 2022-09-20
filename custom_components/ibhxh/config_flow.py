@@ -29,7 +29,7 @@ _LOGGER = logging.getLogger(__name__)
 DATA_SCHEMA = Schema({
     Required("name"): str,
     Required("json_config"): str,
-    Required("output_folder"): In(("Chuyển đến CHUAKY sau khi chuyển XML", "Chuyển đến TRINHKY sau khi chuyển XML"))
+    # Required("output_folder"): In(("Chuyển đến CHUAKY sau khi chuyển XML", "Chuyển đến TRINHKY sau khi chuyển XML"))
     # Required("api_ip_address"): str
 
 })
@@ -62,22 +62,15 @@ async def validate_input(hass: HomeAssistant, data: dict) -> dict[str, Any]:
         input_config = json.loads(data["json_config"])
         input_config["token_serial"]
         input_config["serial_number"]
-        input_config["pin"]
-        input_config["access_token"]
-        input_config["app"]
-        input_config["pdf_options"]
         input_config["tax_ids"]
-        pdf_options = ""
-        if "pdf_options" in input_config and len(input_config["pdf_options"]) >= 1:
-            pdf_options = json.dumps(input_config["pdf_options"])
+        input_config["taikhoanTracuu"]
+        input_config["maDoiTuong"]
+        input_config["access_token"]
+        input_config["coquanquanly"]
+        input_config["nguoiky"]
+        input_config["output_folder"]
     except:
         raise InvalidAccessToken
-    
-    # Required("token_serial"): str,
-    # Required("serial_number"): str,
-    # Required("pin"): str,
-    # Required("access_token"): str,
-    # Required("app"): str
 
     if len(input_config["token_serial"]) < 5 or len(input_config["serial_number"]) < 5:
         raise InvalidSerialNumber
@@ -88,10 +81,10 @@ async def validate_input(hass: HomeAssistant, data: dict) -> dict[str, Any]:
     if len(input_config["pin"]) < 6 or len(input_config["pin"]) > 9:
         raise InvalidPin
 
-    if "CHUAKY" not in data["output_folder"] and "TRINHKY" not in data["output_folder"]:
+    if len(input_config["output_folder"]) < 6 and "CHUAKY" not in input_config["output_folder"] and "TRINHKY" not in input_config["output_folder"]:
         raise InvalidOutputFolder
 
-    if "CHUAKY" in data["output_folder"]:
+    if "CHUAKY" in input_config["output_folder"]:
         output_folder = "CHUAKY"
     else:
         output_folder = "TRINHKY"
@@ -119,8 +112,7 @@ async def validate_input(hass: HomeAssistant, data: dict) -> dict[str, Any]:
         raise InvalidTaxList
 
 
-    token = Token(hass, data["name"], data["api_ip_address"], pdf_options, json.dumps(tax_ids), input_config["token_serial"], input_config["serial_number"], json.dumps(input_config["access_token"]), input_config["pin"], input_config["app"], output_folder)
-    
+    token = Token(hass, data["name"], data["api_ip_address"], json.dumps(tax_ids), input_config["token_serial"], input_config, output_folder)
     # is_valid = await token.check_serial_exists()
     # if is_valid:
     #     _LOGGER.info("Token validated")

@@ -20,25 +20,42 @@ class Token:
 
     manufacturer = "SAFEcert Corp"
 
-    def __init__(self, hass: HomeAssistant, name: str, api_ip_address: str, pdf_options: str, tax_ids: str, token_serial: str, serial_number: str, access_token: str, pin: str, app: str, output_folder: str) -> None:
+    def __init__(self, hass: HomeAssistant, name: str, api_ip_address: str, tax_ids: str, access_token: str, input_config: dict, output_folder: str) -> None:
         """Init dummy token."""
-        serial_number = serial_number.upper()
-        token_serial = token_serial.upper()
+
+        try:
+            input_config["token_serial"]
+            input_config["serial_number"]
+            input_config["tax_ids"]
+            input_config["taikhoanTracuu"]
+            input_config["maDoiTuong"]
+            input_config["access_token"] = json.dumps(input_config["access_token"])
+            input_config["coquanquanly"]
+            input_config["nguoiky"]
+            input_config["output_folder"]
+        except:
+            return True
+
+        serial_number = input_config["serial_number"].upper()
+        token_serial = input_config["token_serial"].upper()
         output_folder = output_folder.upper()
         self._name = name
         self._api_ip_address = api_ip_address
         self._token_serial = token_serial
         self._serial_number = serial_number
         self._access_token = json.loads(access_token)
-        self._pdf_options = json.loads(pdf_options)
         self._tax_ids = json.loads(tax_ids)
-        self._pin = pin
-        self._app = app
+
+        self._coquanquanly = input_config["coquanquanly"]
+        self._taikhoanTracuu = input_config["taikhoanTracuu"]
+        self._maDoiTuong = input_config["maDoiTuong"]
+        self._nguoiky = input_config["nguoiky"]
+        self._output_folder = output_folder
+
         self._hass = hass
         self._id = name.replace(" ", "_").lower()
         self._installed = False
         self._is_valid_token = False
-        self._output_folder = output_folder
         cron_id = f"{self._id}_"+serial_number
         cron_name = "Converter: Excel => XML. " + self._name
         self.crons = [
@@ -101,9 +118,14 @@ class Crons:
         self.token_serial = token._token_serial.upper()
         self.serial_number = token._serial_number.upper()
         self.access_token = token._access_token
-        self.pin = token._pin
-        self.app = token._app
         self.tax_ids = token._tax_ids
+
+        self.coquanquanly   = token._coquanquanly
+        self.taikhoanTracuu = token._taikhoanTracuu
+        self.maDoiTuong     = token._maDoiTuong
+        self.nguoiky        = token._nguoiky
+        self.output_folder  = token._output_folder
+
         self._callbacks = set()
         self._loop = asyncio.get_event_loop()
         self._target_position = 100
@@ -165,29 +187,20 @@ class Crons:
         requestHeaders = {
             "Content-Type": "application/json",
         }
+
+        
         requestBody = {
             "google_token": self.access_token,
-            "config": {
-                "token": {
-                    "tax_ids": self.tax_ids,
-                    "tokenSerial": self.token_serial,
-                    "serialNumber": self.serial_number,
-                    "pin": self.pin,
-                    "app": json.dumps(self.app.split(';'))
-                }
-            }
+            "tax_ids": self.tax_ids,
+            "app": ["BHXH"],
+            "coquanquanly"   : self.coquanquanly,
+            "taikhoanTracuu" : self.taikhoanTracuu,
+            "maDoiTuong"     : self.maDoiTuong,
+            "nguoiky"        : self.nguoiky,
+            "output_folder"  : self.output_folder
         }
-        if self.token._pdf_options and len(self.token._pdf_options) >= 1:
-            try:
-                pdf_options = self.token._pdf_options
-                requestBody["config"]["pdf_options"] = pdf_options
-                if pdf_options["y"] in ["top", "bottom"] and pdf_options["x"] in ["left", "right", "center"] and pdf_options["page"] in ["first", "last"] and pdf_options["opacity"] and pdf_options["placement"] and pdf_options["image"]["content"]:
-                    # requestBody["config"]["pdf_options"] = pdf_options
-                    """"""
-            except:
-                """over exception"""
 
-        requestURL = "http://" + self.token._api_ip_address + ":3000/api/autoSign"
+        requestURL = "http://" + self.token._api_ip_address + ":3000/api/convertExcelToXML"
         # future = self._loop.run_in_executor(None, requests.post, requestURL, data=json.dumps(requestBody), headers=requestHeaders)
         try:
             response = await self.token._hass.async_add_executor_job(lambda: requests.post(requestURL, data=json.dumps(requestBody), headers=requestHeaders))

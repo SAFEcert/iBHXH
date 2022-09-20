@@ -24,13 +24,16 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         input_config = json.loads(entry.data["json_config"])
         input_config["token_serial"]
         input_config["serial_number"]
-        input_config["pin"]
-        input_config["access_token"] = json.dumps(input_config["access_token"])
-        input_config["app"]
         input_config["tax_ids"]
-        pdf_options = ""
-        if "pdf_options" in input_config and len(input_config["pdf_options"]) >= 1:
-            pdf_options = json.dumps(input_config["pdf_options"])
+        input_config["taikhoanTracuu"]
+        input_config["maDoiTuong"]
+        input_config["access_token"] = json.dumps(input_config["access_token"])
+        input_config["coquanquanly"]
+        input_config["nguoiky"]
+        input_config["output_folder"]
+        # pdf_options = ""
+        # if "pdf_options" in input_config and len(input_config["pdf_options"]) >= 1:
+        #     pdf_options = json.dumps(input_config["pdf_options"])
     except:
         """Input config error"""
         _LOGGER.exception("Unexpected exception")
@@ -42,12 +45,12 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
             if tax_id.replace("-", "").isnumeric() and len(tax_id.replace("-", "")) >= 10 and len(tax_id.replace("-", "")) <= 16:
                 tax_ids.append(tax_id.replace("-", ""))
 
-    if "CHUAKY" in entry.data["output_folder"]:
+    if "CHUAKY" in input_config["output_folder"]:
         output_folder = "CHUAKY"
     else:
         output_folder = "TRINHKY"
 
-    token = Token(hass, entry.data["name"], api_ip_address, pdf_options, json.dumps(tax_ids), input_config["token_serial"], input_config["serial_number"], input_config["access_token"], input_config["pin"], input_config["app"], output_folder)
+    token = Token(hass, entry.data["name"], api_ip_address, json.dumps(tax_ids), input_config["token_serial"], input_config, output_folder)
     # await token.check_serial_exists()
     hass.data.setdefault(DOMAIN, {})[entry.entry_id] = token
     _LOGGER.info("Token ok")
