@@ -50,7 +50,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     else:
         output_folder = "TRINHKY"
 
-    token = Token(hass, entry.data["name"], api_ip_address, json.dumps(tax_ids), input_config["token_serial"], input_config, output_folder)
+    token = Token(hass, entry.data["name"], api_ip_address, json.dumps(tax_ids), input_config["access_token"], input_config, output_folder)
     # await token.check_serial_exists()
     hass.data.setdefault(DOMAIN, {})[entry.entry_id] = token
     _LOGGER.info("Token ok")
