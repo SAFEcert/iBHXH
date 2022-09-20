@@ -78,8 +78,8 @@ async def validate_input(hass: HomeAssistant, data: dict) -> dict[str, Any]:
     if len(input_config["token_serial"]) < 5:
         raise InvalidTokenSerial
 
-    if len(input_config["pin"]) < 6 or len(input_config["pin"]) > 9:
-        raise InvalidPin
+    # if len(input_config["pin"]) < 6 or len(input_config["pin"]) > 9:
+    #     raise InvalidPin
 
     if len(input_config["output_folder"]) < 6 and "CHUAKY" not in input_config["output_folder"] and "TRINHKY" not in input_config["output_folder"]:
         raise InvalidOutputFolder
@@ -96,11 +96,11 @@ async def validate_input(hass: HomeAssistant, data: dict) -> dict[str, Any]:
     except:
         raise InvalidAccessToken
 
-    if len(input_config["app"]) >= 1:
-        app_list = input_config["app"].split(';')
-        for app in app_list:
-            if app not in ["XHDO", "BHXH", "THUE", "HSKHAC"]:
-                raise InvalidApp
+    # if len(input_config["app"]) >= 1:
+    #     app_list = input_config["app"].split(';')
+    #     for app in app_list:
+    #         if app not in ["XHDO", "BHXH", "THUE", "HSKHAC"]:
+    #             raise InvalidApp
 
     tax_ids = []
     if len(input_config["tax_ids"]) >= 1:
