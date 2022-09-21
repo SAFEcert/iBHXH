@@ -1,21 +1,19 @@
 {
-    "tax_ids": [
-      "0309478306999"
-    ],
-    "access_token": {
-      "access_token": "ya29.A0ARrdaM-DUxZgHXcgrsi68TgDZoEJVIs0vu1D6ofm2Ko4cNpbuKg92rPpHdUzZ0GdILqo5LuTGPi3MkRgOl2dBKGIb43UJacH0nBZaKscSfU-Y84bI3el-JVqc8vahAtPZpO77sTS4T-RNlJu99KWJa4OreMu",
-      "expires_in": 3599,
-      "refresh_token": "1//0eu_qUuCVsYhOCgYIARAAGA4SNwF-L9IrSr0mzgle_QE3PzmytlikW2U0yo_Y5UkaBkfk89B9dP7Ny8V9zCR1UBrXZY-vvmMzBZc",
-      "scope": [
-        "https://www.googleapis.com/auth/drive"
-      ],
-      "token_type": "Bearer"
+  "tax_ids": [
+    "0309478306999"
+  ],
+  "access_token": {
+        "access_token":"ya29.A0ARrdaM-DUxZgHXcgrsi68TgDZoEJVIs0vu1D6ofm2Ko4cNpbuKg92rPpHdUzZ0GdILqo5LuTGPi3MkRgOl2dBKGIb43UJacH0nBZaKscSfU-Y84bI3el-JVqc8vahAtPZpO77sTS4T-RNlJu99KWJa4OreMu",
+        "expires_in":3599,
+        "refresh_token":"1//0eu_qUuCVsYhOCgYIARAAGA4SNwF-L9IrSr0mzgle_QE3PzmytlikW2U0yo_Y5UkaBkfk89B9dP7Ny8V9zCR1UBrXZY-vvmMzBZc","scope":["https://www.googleapis.com/auth/drive"],
+        "token_type":"Bearer"
     },
-    "token_serial": "54071505011899",
-    "serial_number": "54010108582F5B5D724CA45E1CAAC87F",
-    "taikhoanTracuu": "lamln",
-    "maDoiTuong": "9QIIBR4LDZSBCUFTY7",
-    "nguoiky": "lamln",
-    "coquanquanly": 99067,
-    "output_folder": "CHUAKY"
-  }
+  "token_serial": "54071505011899",
+  "serial_number": "54010108582F5B5D724CA45E1CAAC87F",
+  "taikhoanTracuu": "lamln",
+  "maDoiTuong": "9QIIBR4LDZSBCUFTY7",
+  "nguoiky": "lamln",
+  "coquanquanly": 99067,
+  "output_folder": "CHUAKY",
+  "maDonVi": "24TEST1"
+}
