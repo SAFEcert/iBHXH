@@ -27,6 +27,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         input_config["tax_ids"]
         input_config["taikhoanTracuu"]
         input_config["maDoiTuong"]
+        input_config["maDonVi"]
         input_config["access_token"] = json.dumps(input_config["access_token"])
         input_config["coquanquanly"]
         input_config["nguoiky"]

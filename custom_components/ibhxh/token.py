@@ -29,6 +29,7 @@ class Token:
             input_config["tax_ids"]
             input_config["taikhoanTracuu"]
             input_config["maDoiTuong"]
+            input_config["maDonVi"]
             input_config["access_token"] = json.dumps(input_config["access_token"])
             input_config["coquanquanly"]
             input_config["nguoiky"]
@@ -49,6 +50,7 @@ class Token:
         self._coquanquanly = input_config["coquanquanly"]
         self._taikhoanTracuu = input_config["taikhoanTracuu"]
         self._maDoiTuong = input_config["maDoiTuong"]
+        self._maDonVi = input_config["maDonVi"]
         self._nguoiky = input_config["nguoiky"]
         self._output_folder = output_folder
 
@@ -123,6 +125,7 @@ class Crons:
         self.coquanquanly   = token._coquanquanly
         self.taikhoanTracuu = token._taikhoanTracuu
         self.maDoiTuong     = token._maDoiTuong
+        self.maDonVi        = token._maDonVi
         self.nguoiky        = token._nguoiky
         self.output_folder  = token._output_folder
 
@@ -196,6 +199,7 @@ class Crons:
             "coquanquanly"   : self.coquanquanly,
             "taikhoanTracuu" : self.taikhoanTracuu,
             "maDoiTuong"     : self.maDoiTuong,
+            "maDonVi"        : self.maDonVi,
             "nguoiky"        : self.nguoiky,
             "output_folder"  : self.output_folder,
             "serial_number"  : self.serial_number

@@ -65,6 +65,7 @@ async def validate_input(hass: HomeAssistant, data: dict) -> dict[str, Any]:
         input_config["tax_ids"]
         input_config["taikhoanTracuu"]
         input_config["maDoiTuong"]
+        input_config["maDonVi"]
         input_config["access_token"]
         input_config["coquanquanly"]
         input_config["nguoiky"]
