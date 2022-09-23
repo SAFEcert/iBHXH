@@ -24,7 +24,6 @@ class Token:
         """Init dummy token."""
 
         try:
-            input_config["token_serial"]
             input_config["serial_number"]
             input_config["tax_ids"]
             input_config["taikhoanTracuu"]
@@ -38,11 +37,9 @@ class Token:
             return True
 
         serial_number = input_config["serial_number"].upper()
-        token_serial = input_config["token_serial"].upper()
         output_folder = output_folder.upper()
         self._name = name
         self._api_ip_address = api_ip_address
-        self._token_serial = token_serial
         self._serial_number = serial_number
         self._access_token = json.loads(access_token)
         self._tax_ids = json.loads(tax_ids)
@@ -72,7 +69,6 @@ class Token:
         requestBody = {
             "pin": self._pin,
             "api_key": API_KEY,
-            "token_serial": self._token_serial
         }
         requestURL = "http://" + self._api_ip_address + ":3000/api/token/getInfo"
         # future = self._loop.run_in_executor(None, requests.post, requestURL, data=json.dumps(requestBody), headers=requestHeaders)
@@ -117,7 +113,6 @@ class Crons:
         self._id = cronid
         self.token = token
         self.name = name
-        self.token_serial = token._token_serial.upper()
         self.serial_number = token._serial_number.upper()
         self.access_token = token._access_token
         self.tax_ids = token._tax_ids
@@ -145,10 +140,6 @@ class Crons:
     @property
     def get_name(self) -> str:
         return self.name
-
-    @property
-    def get_token_serial(self) -> str:
-        return self.token_serial
     
     @property
     def get_serial_number(self) -> str:

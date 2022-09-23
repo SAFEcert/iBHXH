@@ -60,7 +60,7 @@ async def validate_input(hass: HomeAssistant, data: dict) -> dict[str, Any]:
 
     try:
         input_config = json.loads(data["json_config"])
-        input_config["token_serial"]
+        # input_config["token_serial"]
         input_config["serial_number"]
         input_config["tax_ids"]
         input_config["taikhoanTracuu"]
@@ -73,11 +73,11 @@ async def validate_input(hass: HomeAssistant, data: dict) -> dict[str, Any]:
     except:
         raise InvalidAccessToken
 
-    if len(input_config["token_serial"]) < 5 or len(input_config["serial_number"]) < 5:
+    if len(input_config["serial_number"]) < 5:
         raise InvalidSerialNumber
     
-    if len(input_config["token_serial"]) < 5:
-        raise InvalidTokenSerial
+    # if len(input_config["token_serial"]) < 5:
+    #     raise InvalidTokenSerial
 
     # if len(input_config["pin"]) < 6 or len(input_config["pin"]) > 9:
     #     raise InvalidPin

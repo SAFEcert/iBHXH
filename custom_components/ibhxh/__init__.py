@@ -22,7 +22,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     api_ip_address = API_IP
     try:
         input_config = json.loads(entry.data["json_config"])
-        input_config["token_serial"]
+        # input_config["token_serial"]
         input_config["serial_number"]
         input_config["tax_ids"]
         input_config["taikhoanTracuu"]
